@@ -65,23 +65,19 @@ export default class Player {
 	}
 
 	getDirection(keys) {
-		if (this.id === 0) {
-			if (keys[GAME_KEYS[0]] && !keys[GAME_KEYS[1]]) {
-				return -1
-			}
-			if (!keys[GAME_KEYS[0]] && keys[GAME_KEYS[1]]) {
-				return 1
-			}
-			return 0
-		} else if (this.id === 1) {
-			if (keys[GAME_KEYS[2]] && !keys[GAME_KEYS[3]]) {
-				return -1
-			}
-			if (!keys[GAME_KEYS[2]] && keys[GAME_KEYS[3]]) {
-				return 1
-			}
-			return 0
+		if (
+			(this.id === 0 && keys[GAME_KEYS[0]] && !keys[GAME_KEYS[1]]) ||
+			(this.id === 1 && keys[GAME_KEYS[2]] && !keys[GAME_KEYS[3]])
+		) {
+			return -1
 		}
+		if (
+			(this.id === 0 && !keys[GAME_KEYS[0]] && keys[GAME_KEYS[1]]) ||
+			(this.id === 1 && !keys[GAME_KEYS[2]] && keys[GAME_KEYS[3]])
+		) {
+			return 1
+		}
+		return 0
 	}
 
 	canMove(dir) {
@@ -108,7 +104,7 @@ export default class Player {
 				ball.x >= this.x + this.width - PLAYER_CONTACT_BUFFER
 			) {
 				// ball is overlapping with player on x axis
-				// ball is touching player on the left face
+				// ball is touching player on the right face
 				return {
 					face: 1,
 					position: this.getContactPos(ball, "y"),
@@ -119,7 +115,7 @@ export default class Player {
 				ball.x + ball.width <= this.x + PLAYER_CONTACT_BUFFER
 			) {
 				// ball is overlapping with player on x axis
-				// ball is touching player on the right face
+				// ball is touching player on the left face
 				return {
 					face: -1,
 					position: this.getContactPos(ball, "y"),
@@ -141,7 +137,7 @@ export default class Player {
 				ball.y >= this.y + this.height - PLAYER_CONTACT_BUFFER
 			) {
 				// ball is overlapping with player on y axis
-				// ball is touching player on the top face
+				// ball is touching player on the bottom face
 				return {
 					face: 1,
 					position: this.getContactPos(ball, "x"),
@@ -152,7 +148,7 @@ export default class Player {
 				ball.y + ball.height <= this.y + PLAYER_CONTACT_BUFFER
 			) {
 				// ball is overlapping with player on y axis
-				// ball is touching player on the bottom face
+				// ball is touching player on the top face
 				return {
 					face: -1,
 					position: this.getContactPos(ball, "x"),

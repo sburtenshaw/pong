@@ -56,13 +56,12 @@ export default class Canvas {
 	drawScores(players) {
 		this.context.fillStyle = this.textColour
 		this.context.font = this.scoreFont
+		this.context.textAlign = "center"
 		for (const { id, score } of players) {
 			if (id === 0) {
-				this.context.textAlign = "center"
 				this.context.fillText(score, this.width * 0.5 - 40, 40)
 			}
 			if (id === 1) {
-				this.context.textAlign = "center"
 				this.context.fillText(score, this.width * 0.5 + 40, 40)
 			}
 		}
