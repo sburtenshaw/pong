@@ -2,8 +2,8 @@ import Game from "./modules/Game.js"
 
 /*
 	TODO
-	- Title screen system
-	- End game system
+		- Pause game menu
+		- 
 */
 
 function handleLoad() {

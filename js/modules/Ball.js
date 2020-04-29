@@ -26,12 +26,10 @@ export default class Ball {
 	}
 
 	update(delta, players) {
-		if (!this.hasRoundWon(players)) {
-			this.checkContact(players)
-			this.xVel += this.xVelIncrement
-			this.x += this.xVel * delta * this.xDir
-			this.y += this.yVel * delta
-		}
+		this.checkContact(players)
+		this.xVel += this.xVelIncrement
+		this.x += this.xVel * delta * this.xDir
+		this.y += this.yVel * delta
 	}
 
 	draw() {
@@ -66,21 +64,15 @@ export default class Ball {
 		)
 	}
 
-	hasRoundWon(players) {
-		if (this.xDir === -1 && this.x <= 0) {
-			this.roundWon(players[1])
-			return true
-		} else if (
-			this.xDir === 1 &&
-			this.x + this.width >= this.canvas.width
-		) {
-			this.roundWon(players[0])
-			return true
-		}
-		return false
-	}
-
 	checkContact(players) {
+		if (
+			(this.xDir === -1 && this.x <= 0) ||
+			(this.xDir === 1 && this.x + this.width >= this.canvas.width)
+		) {
+			this.roundWon(players[this.xDir === -1 ? 1 : 0])
+			return
+		}
+
 		const playerContactMap = players.map(({ getContactMap }) =>
 			getContactMap({
 				width: this.width,

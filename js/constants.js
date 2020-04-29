@@ -8,10 +8,14 @@ export const CANVAS_LINE_WIDTH = 3
 
 export const CONTRAST_COLOUR = "#FFFFFF"
 
+export const TITLE_SCREEN_TITLE_FONT = "40px arial"
+export const TITLE_SCREEN_START_MESSAGE_FONT = "30px arial"
 export const SCORE_FONT = "30px arial"
+export const FPS_FONT = "20px arial"
 
 // W, S, UpArrow, DownArrow
-export const GAME_KEYS = [87, 83, 38, 40]
+export const TITLE_SCREEN_START_GAME_KEY = 13
+export const GAME_KEYS = [87, 83, 38, 40, 27]
 export const WIN_SCORE = 10
 
 export const PLAYER_WIDTH = 10
