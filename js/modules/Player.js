@@ -9,7 +9,7 @@ import {
 } from "../constants.js"
 
 export default class Player {
-	constructor(canvas, id) {
+	constructor(canvas, id, initScore) {
 		this.canvas = canvas
 		this.id = id
 
@@ -21,7 +21,7 @@ export default class Player {
 		this.y = this.getYPos()
 		this.yVel = PLAYER_VELOCITY
 
-		this.score = 0
+		this.score = initScore || 0
 
 		this.getContactMap = this.getContactMap.bind(this)
 	}

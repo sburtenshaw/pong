@@ -87,7 +87,7 @@ export default class Gameplay {
 
 	roundWon(player) {
 		player.incrementScore()
-		if (player.score === this.winScore) {
+		if (player.score >= this.winScore) {
 			this.endGame()
 		} else {
 			for (const player of this.players) {
